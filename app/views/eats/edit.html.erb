@@ -1,0 +1,12 @@
+<% content_for :title, "Editing eat" %>
+
+<h1>Editing eat</h1>
+
+<%= render "form", eat: @eat %>
+
+<br>
+
+<div>
+  <%= link_to "Show this eat", @eat %> |
+  <%= link_to "Back to eats", eats_path %>
+</div>
