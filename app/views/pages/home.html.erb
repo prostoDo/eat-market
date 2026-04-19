@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eat Market — Order Fresh, Eat Well</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-logo">
+    <span class="logo-icon">🥘</span>
+    <span class="logo-text">eat<strong>market</strong></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#restaurants">Restaurants</a></li>
+    <li><a href="#dishes">Dishes</a></li>
+    <li><a href="#popular">Popular</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="search-bar">
+      <span>🔍</span>
+      <input type="text" placeholder="Search dishes…" />
+    </div>
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒 Cart <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">✦ Fresh &amp; Local ✦</div>
+  <h1 class="hero-title">
+    Food that<br /><em>feeds the soul</em>
+  </h1>
+  <p class="hero-sub">Order from the finest local restaurants — delivered hot to your door.</p>
+  <div class="hero-cta">
+    <a href="#dishes" class="btn-primary">Explore Menu</a>
+    <a href="#restaurants" class="btn-ghost">Browse Restaurants</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><strong>48+</strong><span>Restaurants</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><strong>300+</strong><span>Dishes</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><strong>25 min</strong><span>Avg. Delivery</span></div>
+  </div>
+  <div class="hero-blob blob-1"></div>
+  <div class="hero-blob blob-2"></div>
+</header>
+
+<!-- CATEGORY PILLS -->
+<section class="categories">
+  <button class="pill active" onclick="filterCategory('all', this)">All</button>
+  <button class="pill" onclick="filterCategory('italian', this)">🍝 Italian</button>
+  <button class="pill" onclick="filterCategory('asian', this)">🍜 Asian</button>
+  <button class="pill" onclick="filterCategory('burgers', this)">🍔 Burgers</button>
+  <button class="pill" onclick="filterCategory('healthy', this)">🥗 Healthy</button>
+  <button class="pill" onclick="filterCategory('desserts', this)">🍰 Desserts</button>
+  <button class="pill" onclick="filterCategory('pizza', this)">🍕 Pizza</button>
+</section>
+
+<!-- RESTAURANTS -->
+<section id="restaurants" class="section">
+  <div class="section-header">
+    <span class="section-tag">Where to eat</span>
+    <h2 class="section-title">Top Restaurants</h2>
+  </div>
+  <div class="restaurant-grid">
+    <div class="restaurant-card" onclick="scrollToDishes()">
+      <div class="rest-cover" style="background: linear-gradient(135deg,#c84b31,#e8a87c)">🍝</div>
+      <div class="rest-info">
+        <h3>Trattoria Roma</h3>
+        <p>Authentic Italian · Downtown</p>
+        <div class="rest-meta"><span>⭐ 4.8</span><span>20–30 min</span><span>Free delivery</span></div>
+      </div>
+    </div>
+    <div class="restaurant-card" onclick="scrollToDishes()">
+      <div class="rest-cover" style="background: linear-gradient(135deg,#2d6a4f,#74c69d)">🍜</div>
+      <div class="rest-info">
+        <h3>Tokyo Noodle House</h3>
+        <p>Japanese Ramen · Midtown</p>
+        <div class="rest-meta"><span>⭐ 4.9</span><span>25–35 min</span><span>€1.50 delivery</span></div>
+      </div>
+    </div>
+    <div class="restaurant-card" onclick="scrollToDishes()">
+      <div class="rest-cover" style="background: linear-gradient(135deg,#6d3b2e,#d4a27f)">🍔</div>
+      <div class="rest-info">
+        <h3>The Smash Lab</h3>
+        <p>Smash Burgers · Westside</p>
+        <div class="rest-meta"><span>⭐ 4.7</span><span>15–25 min</span><span>Free delivery</span></div>
+      </div>
+    </div>
+    <div class="restaurant-card" onclick="scrollToDishes()">
+      <div class="rest-cover" style="background: linear-gradient(135deg,#4a1942,#c77dff)">🍕</div>
+      <div class="rest-info">
+        <h3>Napoli Express</h3>
+        <p>Wood-fired Pizza · Eastend</p>
+        <div class="rest-meta"><span>⭐ 4.6</span><span>30–40 min</span><span>€2.00 delivery</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISHES GRID -->
+<section id="dishes" class="section section-dark">
+  <div class="section-header">
+    <span class="section-tag">Fresh today</span>
+    <h2 class="section-title">Today's Dishes</h2>
+  </div>
+  <div class="dishes-grid" id="dishes-grid">
+
+    <!-- ITALIAN -->
+    <div class="dish-card" data-category="italian">
+      <div class="dish-img">🍝</div>
+      <div class="dish-badge">Chef's Pick</div>
+      <div class="dish-body">
+        <div class="dish-restaurant">Trattoria Roma</div>
+        <h3 class="dish-name">Spaghetti Carbonara</h3>
+        <p class="dish-desc">Guanciale, Pecorino Romano, farm-fresh eggs, and black pepper — the only way.</p>
+        <div class="dish-footer">
+          <span class="dish-price">€12.90</span>
+          <button class="add-btn" onclick="addToCart('Spaghetti Carbonara', 12.90, this)">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dish-card" data-category="italian">
+      <div class="dish-img">🥩</div>
+      <div class="dish-body">
+        <div class="dish-restaurant">Trattoria Roma</div>
+        <h3 class="dish-name">Osso Buco Milanese</h3>
+        <p class="dish-desc">Slow-braised veal shank with saffron risotto and gremolata.</p>
+        <div class="dish-footer">
+          <span class="dish-price">€19.50</span>
+          <button class="add-btn" onclick="addToCart('Osso Buco Milanese', 19.50, this)">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASIAN -->
+    <div class="dish-card" data-category="asian">
+      <div class="dish-img">🍜</div>
+      <div class="dish-badge new-badge">New</div>
+      <div class="dish-body">
+        <div class="dish-restaurant">Tokyo Noodle House</div>
+        <h3 class="dish-name">Tonkotsu Ramen</h3>
+        <p class="dish-desc">Rich pork bone broth, chashu pork, soft-boiled egg, nori & bamboo shoots.</p>
+        <div class="dish-footer">
+          <span class="dish-price">€14.00</span>
+          <button class="add-btn" onclick="addToCart('Tonkotsu Ramen', 14.00, this)">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dish-card" data-category="asian">
+      <div class="dish-img">🥟</div>
+      <div class="dish-body">
+        <div class="dish-restaurant">Tokyo Noodle House</div>
+        <h3 class="dish-name">Gyoza (8 pcs)</h3>
+        <p class="dish-desc">Pan-fried pork and cabbage dumplings with yuzu ponzu dipping sauce.</p>
+        <div class="dish-footer">
+          <span class="dish-price">€8.50</span>
+          <button class="add-btn" onclick="addToCart('Gyoza', 8.50, this)">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BURGERS -->
+    <div class="dish-card" data-category="burgers">
+      <div class="dish-img">🍔</div>
+      <div class="dish-badge">🔥 Hot</div>
+      <div class="dish-body">
+        <div class="dish-restaurant">The Smash Lab</div>
+        <h3 class="dish-name">Double Smash Burger</h3>
+        <p class="dish-desc">Two smashed beef patties, American cheese, caramelised onions, house sauce.</p>
+        <div class="dish-footer">
+          <span class="dish-price">€13.50</span>
+          <button class="add-btn" onclick="addToCart('Double Smash Burger', 13.50, this)">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dish-card" data-category="burgers">
+      <div class="dish-img">🍟</div>
+      <div class="dish-body">
+        <div class="dish-restaurant">The Smash Lab</div>
+        <h3 class="dish-name">Truffle Fries</h3>
+        <p class="dish-desc">Crispy shoestring fries tossed in truffle oil, parmesan, and fresh herbs.</p>
+        <div class="dish-footer">
+          <span class="dish-price">€6.00</span>
+          <button class="add-btn" onclick="addToCart('Truffle Fries', 6.00, this)">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEALTHY -->
+    <div class="dish-card" data-category="healthy">
+      <div class="dish-img">🥗</div>
+      <div class="dish-body">
+        <div class="dish-restaurant">Green Bowl Co.</div>
+        <h3 class="dish-name">Mediterranean Bowl</h3>
+        <p class="dish-desc">Falafel, hummus, tabbouleh, roasted veg, pickled onion, tahini drizzle.</p>
+        <div class="dish-footer">
+          <span class="dish-price">€11.00</span>
+          <button class="add-btn" onclick="addToCart('Mediterranean Bowl', 11.00, this)">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dish-card" data-category="healthy">
+      <div class="dish-img">🍱</div>
+      <div class="dish-badge">Vegan</div>
+      <div class="dish-body">
+        <div class="dish-restaurant">Green Bowl Co.</div>
+        <h3 class="dish-name">Teriyaki Tofu Bowl</h3>
+        <p class="dish-desc">Crispy tofu, brown rice, edamame, pickled ginger, sesame teriyaki glaze.</p>
+        <div class="dish-footer">
+          <span class="dish-price">€10.50</span>
+          <button class="add-btn" onclick="addToCart('Teriyaki Tofu Bowl', 10.50, this)">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIZZA -->
+    <div class="dish-card" data-category="pizza">
+      <div class="dish-img">🍕</div>
+      <div class="dish-body">
+        <div class="dish-restaurant">Napoli Express</div>
+        <h3 class="dish-name">Margherita Verace</h3>
+        <p class="dish-desc">San Marzano tomatoes, buffalo mozzarella, fresh basil, extra virgin olive oil.</p>
+        <div class="dish-footer">
+          <span class="dish-price">€11.90</span>
+          <button class="add-btn" onclick="addToCart('Margherita Verace', 11.90, this)">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dish-card" data-category="pizza">
+      <div class="dish-img">🧄</div>
+      <div class="dish-badge">Spicy</div>
+      <div class="dish-body">
+        <div class="dish-restaurant">Napoli Express</div>
+        <h3 class="dish-name">Diavola Pizza</h3>
+        <p class="dish-desc">Spicy Calabrian salami, fior di latte, chilli oil, black olives.</p>
+        <div class="dish-footer">
+          <span class="dish-price">€13.90</span>
+          <button class="add-btn" onclick="addToCart('Diavola Pizza', 13.90, this)">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESSERTS -->
+    <div class="dish-card" data-category="desserts">
+      <div class="dish-img">🍰</div>
+      <div class="dish-body">
+        <div class="dish-restaurant">Dolce Vita Patisserie</div>
+        <h3 class="dish-name">Tiramisu</h3>
+        <p class="dish-desc">Classic Italian tiramisu with mascarpone, espresso, Savoiardi, and cocoa dust.</p>
+        <div class="dish-footer">
+          <span class="dish-price">€7.00</span>
+          <button class="add-btn" onclick="addToCart('Tiramisu', 7.00, this)">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dish-card" data-category="desserts">
+      <div class="dish-img">🍫</div>
+      <div class="dish-badge">Best Seller</div>
+      <div class="dish-body">
+        <div class="dish-restaurant">Dolce Vita Patisserie</div>
+        <h3 class="dish-name">Fondant au Chocolat</h3>
+        <p class="dish-desc">Warm dark chocolate fondant, molten centre, served with vanilla crème anglaise.</p>
+        <div class="dish-footer">
+          <span class="dish-price">€8.00</span>
+          <button class="add-btn" onclick="addToCart('Fondant au Chocolat', 8.00, this)">+ Add</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+<aside class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header">
+    <h2>Your Order</h2>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty">
+      <span>🛒</span>
+      <p>Your cart is empty.<br/>Add some dishes!</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-total-row"><span>Subtotal</span><span id="cart-subtotal">€0.00</span></div>
+    <div class="cart-total-row"><span>Delivery</span><span>Free</span></div>
+    <div class="cart-total-row total-final"><span>Total</span><span id="cart-total">€0.00</span></div>
+    <button class="checkout-btn" onclick="checkout()">Place Order →</button>
+  </div>
+</aside>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">🥘 eatmarket</div>
+  <p>© 2025 Eat Market. Crafted with love for food lovers.</p>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
