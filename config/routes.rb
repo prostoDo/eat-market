@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+   resources :kitchens
   get "pages/home"
 
   root "pages#home"
